@@ -7,7 +7,7 @@ namespace WebScraper.Logic.HtmlParsers
     public class HtmlNodeBuilder
     {
         private readonly Stack<IOpeningTag> _unclosedOpeningTags = new Stack<IOpeningTag>();
-        private readonly IList<IHtmlNode> _rootNodes = new List<IHtmlNode>();
+        private readonly List<IHtmlNode> _rootNodes = new List<IHtmlNode>();
         private readonly ITagFactory _tagFactory;
 
         public HtmlNodeBuilder(ITagFactory tagFactory)
@@ -67,7 +67,7 @@ namespace WebScraper.Logic.HtmlParsers
         }
 
         // TODO: make a readonly list
-        public IList<IHtmlNode> ToHtmlNodes()
+        public IReadOnlyList<IHtmlNode> ToHtmlNodes()
         {
             return _rootNodes;
         }

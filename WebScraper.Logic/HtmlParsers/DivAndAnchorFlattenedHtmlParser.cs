@@ -19,7 +19,7 @@ namespace WebScraper.Logic.HtmlParsers
             _validTagOracle = validTagOracle;
         }
 
-        public IList<IHtmlNode> ParseHtml(string html)
+        public IReadOnlyList<IHtmlNode> ParseHtml(string html)
         {
             var htmlNodeBuilder = new HtmlNodeBuilder(_tagFactory); // TODO: probably create an HtmlNodeBuilderFactory - the need for this might become more obvious when i come to unit testing this..
 

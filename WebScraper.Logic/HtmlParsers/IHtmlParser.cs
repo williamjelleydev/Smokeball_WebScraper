@@ -4,6 +4,6 @@ namespace WebScraper.Logic.HtmlParsers
 {
     public interface IHtmlParser
     {
-        IList<IHtmlNode> ParseHtml(string html);
+        IReadOnlyList<IHtmlNode> ParseHtml(string html);
     }
 }

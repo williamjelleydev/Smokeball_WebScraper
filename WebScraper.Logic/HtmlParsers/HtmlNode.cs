@@ -13,7 +13,7 @@ namespace WebScraper.Logic.HtmlParsers
         }
 
         public string Name { get; }
-        public IList<IHtmlNode> Children { get; } // TODO: make readonly, etc..
+        public IReadOnlyList<IHtmlNode> Children { get; } // TODO: make readonly, etc..
 
         private string Attributes { get; }
 
@@ -23,7 +23,7 @@ namespace WebScraper.Logic.HtmlParsers
             return Attributes.Contains(className);
         }
 
-        public IList<IHtmlNode> GetNodesWithClass(string className)
+        public IEnumerable<IHtmlNode> GetNodesWithClass(string className)
         {
             var nodes = new List<IHtmlNode>();
             if (HasClass(className))
@@ -39,7 +39,7 @@ namespace WebScraper.Logic.HtmlParsers
             return nodes;
         }
 
-        public IList<IHtmlNode> GetNodesWithAnyOfClasses(IEnumerable<string> classes)
+        public IEnumerable<IHtmlNode> GetNodesWithAnyOfClasses(IEnumerable<string> classes)
         {
             var nodes = new List<IHtmlNode>();
             if (classes.Any(c => HasClass(c)))

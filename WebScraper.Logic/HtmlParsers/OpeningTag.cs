@@ -14,7 +14,7 @@ namespace WebScraper.Logic.HtmlParsers
 
         public string Name { get; }
 
-        public IList<IHtmlNode> Children { get; } = new List<IHtmlNode>();
+        public List<IHtmlNode> Children { get; } = new List<IHtmlNode>();
 
         public string Attributes { get; }
     }
