@@ -5,6 +5,7 @@ using FluentAssertions.Execution;
 using Moq;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using WebScraper.Logic.HtmlParsers;
 using WebScraper.Logic.Tests.Integration.Customizations;
 using Xunit;
@@ -13,11 +14,11 @@ namespace WebScraper.Logic.Tests.Integration
 {
     public class GoogleRankerTests
     {
-        public class GetRankings
+        public class GetRankingsAsync
         {
             [Theory]
             [AutoMoqData]
-            public void OneSmokeballSearchResultAtPosition5(
+            public async Task OneSmokeballSearchResultAtPosition5(
                 [Frozen] IFixture fixture,
                 [Frozen] IHtmlDownloader htmlDownloader,
                 TagFactory tagFactory)
@@ -30,11 +31,11 @@ namespace WebScraper.Logic.Tests.Integration
                 // TODO: make relative file path so can run anywhere..
                 string htmlFilePath = @"C:\Source\WebScraper\WebScraper\WebScraper.Logic.Tests.Integration\TestData\GoogleTest.html";
                 var html = File.ReadAllText(htmlFilePath);
-                Mock.Get(htmlDownloader).Setup(x => x.DownloadHtml(It.IsAny<string>())).Returns(html);
+                Mock.Get(htmlDownloader).Setup(x => x.DownloadHtmlAsync(It.IsAny<string>())).Returns(Task.FromResult(html));
 
                 var sut = fixture.Create<GoogleRanker>();
 
-                var result = sut.GetRankings();
+                var result = await sut.GetRankingsAsync();
 
                 using (new AssertionScope())
                 {
@@ -43,9 +44,10 @@ namespace WebScraper.Logic.Tests.Integration
                 }
             }
 
+
             [Theory(Skip = "Enable once code actually meets this criteria lol")]
             [AutoMoqData]
-            public void OneSmokeballSearchResultAtPosition7(
+            public async Task OneSmokeballSearchResultAtPosition7(
                 [Frozen] IFixture fixture,
                 [Frozen] IHtmlDownloader htmlDownloader,
                 TagFactory tagFactory)
@@ -58,11 +60,11 @@ namespace WebScraper.Logic.Tests.Integration
                 // TODO: make relative file path so can run anywhere..
                 string htmlFilePath = @"C:\Source\WebScraper\WebScraper\WebScraper.Logic.Tests.Integration\TestData\GoogleTest.html";
                 var html = File.ReadAllText(htmlFilePath);
-                Mock.Get(htmlDownloader).Setup(x => x.DownloadHtml(It.IsAny<string>())).Returns(html);
+                Mock.Get(htmlDownloader).Setup(x => x.DownloadHtmlAsync(It.IsAny<string>())).Returns(Task.FromResult(html));
 
                 var sut = fixture.Create<GoogleRanker>();
 
-                var result = sut.GetRankings();
+                var result = await sut.GetRankingsAsync();
 
                 using (new AssertionScope())
                 {

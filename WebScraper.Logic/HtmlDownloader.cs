@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace WebScraper.Logic
 {
@@ -12,6 +14,18 @@ namespace WebScraper.Logic
             using (WebClient webClient = new WebClient())
             {
                 html = webClient.DownloadString(url);
+            }
+
+            return html;
+        }
+
+        public async Task<string> DownloadHtmlAsync(string url)
+        {
+            string html = "";
+
+            using (WebClient webClient = new WebClient())
+            {
+                html = await webClient.DownloadStringTaskAsync(url);
             }
 
             return html;

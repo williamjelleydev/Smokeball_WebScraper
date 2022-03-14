@@ -35,7 +35,31 @@ namespace WebScraper.UI
         {
             // TODO: call out to business logic..?
             Console.WriteLine("Button Clicked!");
+
+            var stop = true;
+
+            //while(stop)
+            //{
+            //    var stop3 = true;
+            //}
+
+
              var res = _googleRanker.GetRankings();
         }
+
+        // I'm unsure if this is the magic i wanted it to be??
+        // I feel like this still might be running on the same ui context thread??
+        // In which case, do i have to call Task.Run(() => _googleRanker.GetRankingsAsync()) to somehow free up teh ui thread??
+        private async void HtmlParserAsyncTest_Click(object sender, RoutedEventArgs e)
+        {
+            // Right so with await will "do stuff with the calling context UI thread in the meantime _until_ res is returned, in which the the result will be put back onto the calling context UI thread and that will resume...
+            // So this kind of _is_ what I want to do??
+            // TODO: does async work like I _think_ it does....?
+            // How do we ever end up with the actual result of the task..?
+            var res = await _googleRanker.GetRankingsAsync();
+        }
+
+        // https://www.codeguru.com/dotnet/managing-non-blocking-calls-on-the-ui-thread-with-async-await/
+        // According to this, calling just await is good for IO heavy asynchronous tasks
     }
 }
