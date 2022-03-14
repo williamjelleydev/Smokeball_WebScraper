@@ -2,6 +2,12 @@
 
 namespace WebScraper.Logic.HtmlParsers
 {
+    /// <summary>
+    /// ValidTagOracle goes through string and determines what is consider a valid html tag contents.
+    /// In our case that is any tag starting with <div and <a .
+    /// Reasonably hacky to get things working. This should definitely be swapped out with more robust
+    /// logic for determine what and how to get tag elements from input html
+    /// </summary>
     public class ValidTagOracle : IValidTagOracle
     {
         // TODO: this could _probably_ be the config options of this oracle??
