@@ -16,6 +16,10 @@ namespace WebScraper.Logic.Tests.Integration
     {
         public class GetRankingsAsync
         {
+            // TODO: Add a test here that actually _hits_ google.com.au
+            // If we cannot find 100 results with "egMi0", then we know this web scraper will fail!!
+
+
             [Theory]
             [AutoMoqData]
             public async Task OneSmokeballSearchResultAtPosition5(
@@ -48,6 +52,7 @@ namespace WebScraper.Logic.Tests.Integration
 
             [Theory(Skip = "Enable once code actually meets this criteria lol")]
             [AutoMoqData]
+            // TODO: Confirm, but maybe this _should_ be 6!!!
             public async Task OneSmokeballSearchResultAtPosition7(
                 [Frozen] IFixture fixture,
                 [Frozen] IHtmlDownloader htmlDownloader,

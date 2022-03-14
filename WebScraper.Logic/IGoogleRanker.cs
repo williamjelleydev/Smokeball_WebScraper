@@ -6,5 +6,6 @@ namespace WebScraper.Logic
     public interface IGoogleRanker
     {
         Task<IEnumerable<int>> GetRankingsAsync();
+        Task<List<UrlRanking>> GetAllRankingsAsync();
     }
 }

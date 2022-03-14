@@ -31,7 +31,7 @@ namespace WebScraper.UI
 
 
 
-
+            services.AddSingleton<IValidTagOracle, ValidTagOracle>();
             services.AddSingleton<ITagFactory, TagFactory>();
             services.AddSingleton<IHtmlParser, DivAndAnchorFlattenedHtmlParser>();
             services.AddSingleton<IHtmlDownloader, HtmlDownloader>();
