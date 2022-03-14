@@ -8,14 +8,10 @@ namespace WebScraper.Logic
     {
         public async Task<string> DownloadHtmlAsync(string url)
         {
-            string html = "";
-
             using (WebClient webClient = new WebClient())
             {
-                html = await webClient.DownloadStringTaskAsync(url);
+                return await webClient.DownloadStringTaskAsync(url);
             }
-
-            return html;
         }
     }
 }
