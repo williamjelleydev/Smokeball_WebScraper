@@ -15,13 +15,13 @@ namespace WebScraper.Logic.HtmlParsers
         public string Name { get; }
         public IList<HtmlNode> Children { get; } // TODO: make readonly, etc..
 
-        private IList<string> Attributes { get; } // TODO: stop exposing this publicly until it actually works properly..
+        private string Attributes { get; } // TODO: stop exposing this publicly until it actually works properly..
 
 
         public bool HasClass(string className)
         {
             // TODO: re-implement this once we have proper AttributeParser lol
-            return Attributes.Any(a => a.Contains(className));
+            return Attributes.Contains(className);
         }
 
         public IList<HtmlNode> GetNodesWithClass(string className)
@@ -58,7 +58,7 @@ namespace WebScraper.Logic.HtmlParsers
 
         public bool HasHrefWithUrl(string url)
         {
-            return Attributes.Any(a => a.Contains(url));
+            return Attributes.Contains(url);
         }
     }
 }

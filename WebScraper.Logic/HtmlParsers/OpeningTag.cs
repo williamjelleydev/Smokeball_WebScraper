@@ -6,7 +6,7 @@ namespace WebScraper.Logic.HtmlParsers
 {
     public class OpeningTag
     {
-        public OpeningTag(string name, IList<string> attributes)
+        public OpeningTag(string name, string attributes)
         {
             Name = name;
             Attributes = attributes;
@@ -16,7 +16,7 @@ namespace WebScraper.Logic.HtmlParsers
 
         public IList<HtmlNode> Children { get; } = new List<HtmlNode>();
 
-        public IList<string> Attributes { get; } // TODO: Have as Key-Value pairs once we implement parsing in TagFactory
+        public string Attributes { get; } // TODO: Have as Key-Value pairs once we implement parsing in TagFactory
 
     }
 }
