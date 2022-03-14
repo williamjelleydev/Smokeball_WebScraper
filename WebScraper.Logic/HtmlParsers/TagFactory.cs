@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace WebScraper.Logic.HtmlParsers
 {
     public class TagFactory : ITagFactory
     {
         // TODO: merge this logic with the ValidHtmlOracle somehow???
-        public OpeningTag CreateOpeningTagFromContents(string tagContents)
+        public IOpeningTag CreateOpeningTagFromContents(string tagContents)
         {
             var currentPos = 0;
             while (currentPos + 1 < tagContents.Length && !IsAcceptableCharProceedingTagName(tagContents[currentPos + 1]))
@@ -38,7 +36,7 @@ namespace WebScraper.Logic.HtmlParsers
             return _acceptableCharsProceedingTagNam.Contains(inputChar);
         }
 
-        public ClosingTag CreateClosingTagFromContents(string tagContents)
+        public IClosingTag CreateClosingTagFromContents(string tagContents)
         {
             // TODO: accept that a closing tag could have attributes (if self closing), and so create in the same way??
             // ew - this code is not a good fit for what we need here...
@@ -55,7 +53,7 @@ namespace WebScraper.Logic.HtmlParsers
         }
 
         // Ew gross, but gets otehr dependencies in HtmlNodeBuilder working for now..
-        public OpeningTag CreateOpeningTagFromClosingTag(ClosingTag closingTag)
+        public IOpeningTag CreateOpeningTagFromClosingTag(IClosingTag closingTag)
         {
             // yeah ew..
             return new OpeningTag(closingTag.Name, "");

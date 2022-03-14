@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WebScraper.Logic.HtmlParsers
 {
-    public class OpeningTag
+    public class OpeningTag : IOpeningTag
     {
         public OpeningTag(string name, string attributes)
         {
@@ -14,9 +14,8 @@ namespace WebScraper.Logic.HtmlParsers
 
         public string Name { get; }
 
-        public IList<HtmlNode> Children { get; } = new List<HtmlNode>();
+        public IList<IHtmlNode> Children { get; } = new List<IHtmlNode>();
 
-        public string Attributes { get; } // TODO: Have as Key-Value pairs once we implement parsing in TagFactory
-
+        public string Attributes { get; }
     }
 }

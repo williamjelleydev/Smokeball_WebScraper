@@ -6,8 +6,8 @@ namespace WebScraper.Logic.HtmlParsers
 {
     public class HtmlNodeBuilder
     {
-        private readonly Stack<OpeningTag> _unclosedOpeningTags = new Stack<OpeningTag>();
-        private readonly IList<HtmlNode> _rootNodes = new List<HtmlNode>();
+        private readonly Stack<IOpeningTag> _unclosedOpeningTags = new Stack<IOpeningTag>();
+        private readonly IList<IHtmlNode> _rootNodes = new List<IHtmlNode>();
         private readonly ITagFactory _tagFactory;
 
         public HtmlNodeBuilder(ITagFactory tagFactory)
@@ -15,12 +15,12 @@ namespace WebScraper.Logic.HtmlParsers
             _tagFactory = tagFactory;
         }
 
-        public void AddOpeningTag(OpeningTag tag)
+        public void AddOpeningTag(IOpeningTag tag)
         {
             _unclosedOpeningTags.Push(tag);
         }
 
-        public void AddClosingTag(ClosingTag closingTag)
+        public void AddClosingTag(IClosingTag closingTag)
         {
             // TODO: I'm sure I can reduce this. There is a lot of similar/duplicate looking logic
             if (_unclosedOpeningTags.Count > 0)
@@ -67,7 +67,7 @@ namespace WebScraper.Logic.HtmlParsers
         }
 
         // TODO: make a readonly list
-        public IList<HtmlNode> ToHtmlNodes()
+        public IList<IHtmlNode> ToHtmlNodes()
         {
             return _rootNodes;
         }

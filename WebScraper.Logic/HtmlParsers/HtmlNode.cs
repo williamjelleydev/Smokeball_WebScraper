@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace WebScraper.Logic.HtmlParsers
 {
-    public class HtmlNode
+    public class HtmlNode : IHtmlNode
     {
-        public HtmlNode(OpeningTag openingTag)
+        public HtmlNode(IOpeningTag openingTag)
         {
             Name = openingTag.Name;
             Children = openingTag.Children;
@@ -13,20 +13,19 @@ namespace WebScraper.Logic.HtmlParsers
         }
 
         public string Name { get; }
-        public IList<HtmlNode> Children { get; } // TODO: make readonly, etc..
+        public IList<IHtmlNode> Children { get; } // TODO: make readonly, etc..
 
-        private string Attributes { get; } // TODO: stop exposing this publicly until it actually works properly..
+        private string Attributes { get; }
 
 
         public bool HasClass(string className)
         {
-            // TODO: re-implement this once we have proper AttributeParser lol
             return Attributes.Contains(className);
         }
 
-        public IList<HtmlNode> GetNodesWithClass(string className)
+        public IList<IHtmlNode> GetNodesWithClass(string className)
         {
-            var nodes = new List<HtmlNode>();
+            var nodes = new List<IHtmlNode>();
             if (HasClass(className))
             {
                 nodes.Add(this);
@@ -40,9 +39,9 @@ namespace WebScraper.Logic.HtmlParsers
             return nodes;
         }
 
-        public IList<HtmlNode> GetNodesWithAnyOfClasses(IEnumerable<string> classes)
+        public IList<IHtmlNode> GetNodesWithAnyOfClasses(IEnumerable<string> classes)
         {
-            var nodes = new List<HtmlNode>();
+            var nodes = new List<IHtmlNode>();
             if (classes.Any(c => HasClass(c)))
             {
                 nodes.Add(this);

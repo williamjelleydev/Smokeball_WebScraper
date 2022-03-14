@@ -1,7 +1,6 @@
 ﻿namespace WebScraper.Logic.HtmlParsers
 {
-    // TODO: base HtmlTag class?
-    public class ClosingTag
+    public class ClosingTag : IClosingTag
     {
         public ClosingTag(string name)
         {

@@ -2,8 +2,8 @@
 {
     public interface ITagFactory
     {
-        ClosingTag CreateClosingTagFromContents(string tagContents);
-        OpeningTag CreateOpeningTagFromClosingTag(ClosingTag closingTag);
-        OpeningTag CreateOpeningTagFromContents(string tagContents);
+        IClosingTag CreateClosingTagFromContents(string tagContents);
+        IOpeningTag CreateOpeningTagFromClosingTag(IClosingTag closingTag);
+        IOpeningTag CreateOpeningTagFromContents(string tagContents);
     }
 }
