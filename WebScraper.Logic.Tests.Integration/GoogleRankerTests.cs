@@ -25,13 +25,15 @@ namespace WebScraper.Logic.Tests.Integration
             public async Task OneSmokeballSearchResultAtPosition6(
                 [Frozen] IFixture fixture,
                 [Frozen] IHtmlDownloader htmlDownloader,
-                TagFactory tagFactory)
+                TagFactory tagFactory,
+                GoogleRankerConfig googleRankerConfig)
             {
                 var expectedRanking = 6;
 
                 fixture.Register<ITagFactory>(() => tagFactory);
                 fixture.Register<IValidTagOracle>(() => fixture.Create<ValidTagOracle>());
                 fixture.Register<IHtmlParser>(() => fixture.Create<DivAndAnchorFlattenedHtmlParser>());
+                fixture.Register<IGoogleRankerConfig>(() => fixture.Create<GoogleRankerConfig>());
 
                 // TODO: make relative file path so can run anywhere..
                 string htmlFilePath = @"C:\Source\WebScraper\WebScraper\WebScraper.Logic.Tests.Integration\TestData\GoogleTest.html";

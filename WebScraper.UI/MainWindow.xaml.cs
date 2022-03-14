@@ -51,7 +51,7 @@ namespace WebScraper.UI
 
         private async void GetAllRankingsTest_Click(object sender, RoutedEventArgs e)
         {
-            var res = await _googleRanker.GetAllRankingsAsync();
+            //var res = await _googleRanker.GetAllRankingsAsync();
         }
 
         private void DownloadFreshHtml_Click(object sender, RoutedEventArgs e)

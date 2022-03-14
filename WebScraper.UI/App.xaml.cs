@@ -37,6 +37,7 @@ namespace WebScraper.UI
             services.AddSingleton<IHtmlDownloader, HtmlDownloader>();
 
             // GoogleRanker Business Logic
+            services.AddSingleton<IGoogleRankerConfig, GoogleRankerConfig>();
             services.AddSingleton<IGoogleRanker, GoogleRanker>();
 
 

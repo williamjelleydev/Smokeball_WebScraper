@@ -18,40 +18,6 @@ namespace WebScraper.Logic.HtmlParsers
         private IList<string> Attributes { get; } // TODO: stop exposing this publicly until it actually works properly..
 
 
-
-        //public IEnumerable<string> GetThisLevelAttributesThatMatch(string attributeName)
-        //{
-        //    return Attributes.Where(a => a.Contains(attributeName));
-        //}
-
-        //public IList<string> GetNestedAttributesThatMatch(string attributeName)
-        //{
-        //    // ew gross i have ToList()'s like this...s
-        //    var thisLevelRes = GetThisLevelAttributesThatMatch(attributeName).ToList();
-        //    foreach (var childNode in Children)
-        //    {
-        //        thisLevelRes.AddRange(childNode.GetNestedAttributesThatMatch(attributeName));
-        //    }
-
-        //    return thisLevelRes;
-        //}
-
-        //public IList<HtmlNode> GetNodesWithAttributesThatMatch(string attributeName)
-        //{
-        //    var res = new List<HtmlNode>();
-        //    if (GetThisLevelAttributesThatMatch(attributeName).Any())
-        //    {
-        //        res.Add(this);
-        //    }
-
-        //    foreach (var node in Children)
-        //    {
-        //        res.AddRange(node.GetNodesWithAttributesThatMatch(attributeName));
-        //    }
-
-        //    return res;
-        //}
-
         public bool HasClass(string className)
         {
             // TODO: re-implement this once we have proper AttributeParser lol
