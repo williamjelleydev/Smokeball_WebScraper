@@ -20,44 +20,31 @@ namespace WebScraper.Logic.HtmlParsers
             _validTagOracle = validTagOracle;
         }
 
-        public IReadOnlyList<IHtmlNode> ParseHtml_OG(string html)
-        {
-            var htmlNodeBuilder = new HtmlNodeBuilder(_tagFactory);
+        //public IReadOnlyList<IHtmlNode> ParseHtml_OG(string html)
+        //{
+        //    var htmlNodeBuilder = new HtmlNodeBuilder(_tagFactory);
 
-            var currentPosition = 0;
+        //    var currentPosition = 0;
 
-            while (_validTagOracle.TryGetNextValidTag(currentPosition, html, out string tagContents, out bool isOpeningTag, out int nextPosition))
-            {
-                currentPosition = nextPosition;
-                if (isOpeningTag)
-                {
-                    var openingTag = _tagFactory.CreateOpeningTagFromContents(tagContents);
-                    htmlNodeBuilder.AddOpeningTag(openingTag);
-                }
-                else
-                {
-                    var closingTag = _tagFactory.CreateClosingTagFromContents(tagContents);
-                    htmlNodeBuilder.AddClosingTag(closingTag);
-                }
-            }
+        //    while (_validTagOracle.TryGetNextValidTag(currentPosition, html, out string tagContents, out bool isOpeningTag, out int nextPosition))
+        //    {
+        //        currentPosition = nextPosition;
+        //        if (isOpeningTag)
+        //        {
+        //            var openingTag = _tagFactory.CreateOpeningTagFromContents(tagContents);
+        //            htmlNodeBuilder.AddOpeningTag(openingTag);
+        //        }
+        //        else
+        //        {
+        //            var closingTag = _tagFactory.CreateClosingTagFromContents(tagContents);
+        //            htmlNodeBuilder.AddClosingTag(closingTag);
+        //        }
+        //    }
 
-            return htmlNodeBuilder.ToHtmlNodes();
-        }
+        //    return htmlNodeBuilder.ToHtmlNodes();
+        //}
 
         public IReadOnlyList<IHtmlNode> ParseHtml(string html)
-        {
-            IReadOnlyList<IHtmlNode> res = new List<HtmlNode>();
-            try
-            {
-                res = ParseHtmlUnSafe(html);
-            } catch (Exception e)
-            {
-                var stop = true;
-            }
-            return res;
-        }
-
-        public IReadOnlyList<IHtmlNode> ParseHtmlUnSafe(string html)
         {
             var htmlNodeBuilder = new HtmlNodeBuilder(_tagFactory);
             var validTagParser = new ValidTagParser();
@@ -102,12 +89,12 @@ namespace WebScraper.Logic.HtmlParsers
                 if (validTagParser.TryParse(tagContents, out HtmlTag tag)) {
                     if (isOpeningTag)
                     {
-                        var openingTag = tag.ToOpeningTag();
-                        htmlNodeBuilder.AddOpeningTag(openingTag);
+                        //var openingTag = tag.ToOpeningTag();
+                        htmlNodeBuilder.AddOpeningTag(tag);
                     } else
                     {
-                        var closingTag = tag.ToClosingTag();
-                        htmlNodeBuilder.AddClosingTag(closingTag);
+                        //var closingTag = tag.ToClosingTag();
+                        htmlNodeBuilder.AddClosingTag(tag);
                     }
                     currentPosition = nextClosingPosition + 1; // carry on looking for more tags after end of this one
                 } else
@@ -175,33 +162,5 @@ namespace WebScraper.Logic.HtmlParsers
         {
             return _acceptableCharsProceedingTagNam.Contains(inputChar);
         }
-    }
-
-    public class HtmlTag
-    {
-        // just to get builds working for now..
-        public OpeningTag ToOpeningTag()
-        {
-            return new OpeningTag(Name, Attributes);
-        }
-
-        public ClosingTag ToClosingTag()
-        {
-            return new ClosingTag(Name); // okay just name for now I guess...??
-        }
-
-        // Just hacking as a duplicat of OpenningTag for now, so I can switch these out later..s
-        public HtmlTag(string name, string attributes)
-        {
-            Name = name;
-            Attributes = attributes;
-        }
-
-        public string Name { get; }
-
-        public List<IHtmlNode> Children { get; } = new List<IHtmlNode>();
-
-        public string Attributes { get; }
-
     }
 }

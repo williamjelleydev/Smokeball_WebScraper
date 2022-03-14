@@ -4,7 +4,7 @@ namespace WebScraper.Logic.HtmlParsers
 {
     public class HtmlNodeBuilder
     {
-        private readonly Stack<IOpeningTag> _unclosedOpeningTags = new Stack<IOpeningTag>();
+        private readonly Stack<IHtmlTag> _unclosedOpeningTags = new Stack<IHtmlTag>();
         private readonly List<IHtmlNode> _rootNodes = new List<IHtmlNode>();
         private readonly ITagFactory _tagFactory;
 
@@ -13,12 +13,12 @@ namespace WebScraper.Logic.HtmlParsers
             _tagFactory = tagFactory;
         }
 
-        public void AddOpeningTag(IOpeningTag tag)
+        public void AddOpeningTag(IHtmlTag tag)
         {
             _unclosedOpeningTags.Push(tag);
         }
 
-        public void AddClosingTag(IClosingTag closingTag)
+        public void AddClosingTag(IHtmlTag closingTag)
         {
             if (_unclosedOpeningTags.Count > 0)
             {
@@ -41,8 +41,8 @@ namespace WebScraper.Logic.HtmlParsers
             else
             {
                 // Assume must be self closing tag
-                var openingTag = _tagFactory.CreateOpeningTagFromClosingTag(closingTag);
-                _rootNodes.Add(new HtmlNode(openingTag));
+                //var openingTag = _tagFactory.CreateOpeningTagFromClosingTag(closingTag);
+                _rootNodes.Add(new HtmlNode(closingTag));
             }
 
             void AddToParentOrRoot(HtmlNode htmlNode)

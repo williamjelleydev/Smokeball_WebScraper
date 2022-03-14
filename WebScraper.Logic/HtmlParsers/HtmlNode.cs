@@ -5,7 +5,7 @@ namespace WebScraper.Logic.HtmlParsers
 {
     public class HtmlNode : IHtmlNode
     {
-        public HtmlNode(IOpeningTag openingTag)
+        public HtmlNode(IHtmlTag openingTag)
         {
             Name = openingTag.Name;
             Children = openingTag.Children;

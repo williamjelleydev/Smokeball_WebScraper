@@ -4,18 +4,18 @@ using System.Text;
 
 namespace WebScraper.Logic.HtmlParsers
 {
-    public class OpeningTag : IOpeningTag
-    {
-        public OpeningTag(string name, string attributes)
-        {
-            Name = name;
-            Attributes = attributes;
-        }
+    //public class OpeningTag : IOpeningTag
+    //{
+    //    public OpeningTag(string name, string attributes)
+    //    {
+    //        Name = name;
+    //        Attributes = attributes;
+    //    }
 
-        public string Name { get; }
+    //    public string Name { get; }
 
-        public List<IHtmlNode> Children { get; } = new List<IHtmlNode>();
+    //    public List<IHtmlNode> Children { get; } = new List<IHtmlNode>();
 
-        public string Attributes { get; }
-    }
+    //    public string Attributes { get; }
+    //}
 }
