@@ -63,7 +63,6 @@ namespace WebScraper.Logic.Tests.Integration
                 result.Should().HaveCount(1);
                 result.First().Should().Be(expectedRanking);
             }
-
         }
     }
 }
