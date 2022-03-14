@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using WebScraper.Logic.HtmlParsers;
@@ -30,6 +31,9 @@ namespace WebScraper.Logic
         {
             var html = _htmlDownloader.DownloadHtml(_googleSearchUrl); // TODO await this!
             var htmlNodes = _htmlParser.ParseHtml(html);
+
+            _logger.LogWarning("DUH!: Inside GetRankings and testing MY LOOOOGGGGEEEERRR");
+            Console.WriteLine("Here is a direct console writeline for comparison");
 
             var searchPositions = new List<int>();
             var currentSearchPosition = 0;

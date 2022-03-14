@@ -27,8 +27,7 @@ namespace WebScraper.UI
 
             // TODO: set up dependencies of GoogleRanker
 
-            // TODO: add logging somehow..
-            // This _might_ be all the generics I need here for logging??
+            // TODO: confirm that logging actually works as expected...
             services.AddLogging(configure => configure.AddConsole());
 
 
