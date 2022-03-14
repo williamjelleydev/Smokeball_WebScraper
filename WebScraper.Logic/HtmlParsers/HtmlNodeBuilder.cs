@@ -30,6 +30,7 @@ namespace WebScraper.Logic.HtmlParsers
                 }
                 else
                 {
+                    // If not matching, assume that top tag must be an implied self closing tag
                     var selfClosingHtmlNode = new HtmlNode(_unclosedOpeningTags.Pop());
                     AddToParentOrRoot(selfClosingHtmlNode);
 

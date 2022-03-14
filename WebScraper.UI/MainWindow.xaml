@@ -17,7 +17,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <TextBlock HorizontalAlignment="Center">
-                Press to get www.smokeball.com.au's rankings in googlecom.au's top 100 search results for "Conveyancing Software"
+                Press to get www.smokeball.com.au's rankings in google.com.au's top 100 search results for "Conveyancing Software"
             </TextBlock>
             <Button HorizontalAlignment="Center" Grid.Row="1" Margin="10" Click="GetRankings_Click" Width="150">
                 Get Google Rankings
