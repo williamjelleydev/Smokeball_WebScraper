@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Serilog;
 using System.Windows;
 using WebScraper.Logic;
 using WebScraper.Logic.HtmlParsers;
