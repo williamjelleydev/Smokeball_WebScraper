@@ -33,18 +33,7 @@ namespace WebScraper.UI
         // TODO: make this async
         private void HtmlParserTest_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: call out to business logic..?
-            Console.WriteLine("Button Clicked!");
-
-            var stop = true;
-
-            //while(stop)
-            //{
-            //    var stop3 = true;
-            //}
-
-
-             var res = _googleRanker.GetRankings();
+            // TODO: remove old code path
         }
 
         // I'm unsure if this is the magic i wanted it to be??
