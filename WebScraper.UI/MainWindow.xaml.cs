@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WebScraper.Logic;
 
 namespace WebScraper.UI
 {
@@ -20,15 +21,21 @@ namespace WebScraper.UI
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        // TODO: make this its own GoogleRanker window or something??
+        private readonly IGoogleRanker _googleRanker;
+
+        public MainWindow(IGoogleRanker googleRanker)
         {
             InitializeComponent();
+            _googleRanker = googleRanker;
         }
 
+        // TODO: make this async
         private void HtmlParserTest_Click(object sender, RoutedEventArgs e)
         {
             // TODO: call out to business logic..?
             Console.WriteLine("Button Clicked!");
+             var res = _googleRanker.GetRankings();
         }
     }
 }

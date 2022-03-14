@@ -1,11 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Serilog;
 using System.Windows;
+using WebScraper.Logic;
+using WebScraper.Logic.HtmlParsers;
 
 namespace WebScraper.UI
 {
@@ -25,6 +23,25 @@ namespace WebScraper.UI
 
         private void ConfigureServices(ServiceCollection services)
         {
+            // TODO: figure out if should be singletons or scoped??
+
+            // TODO: set up dependencies of GoogleRanker
+
+            // TODO: add logging somehow..
+            // This _might_ be all the generics I need here for logging??
+            services.AddLogging(configure => configure.AddConsole());
+
+
+
+
+            services.AddSingleton<ITagFactory, TagFactory>();
+            services.AddSingleton<IHtmlParser, HtmlParser>();
+            services.AddSingleton<IHtmlDownloader, HtmlDownloader>();
+
+            // GoogleRanker Business Logic
+            services.AddSingleton<IGoogleRanker, GoogleRanker>();
+
+
             services.AddSingleton<MainWindow>();
         }
 
