@@ -24,6 +24,7 @@ namespace WebScraper.UI
         {
             services.AddLogging(configure => configure.AddConsole());
 
+            services.AddSingleton<IValidTagParser, ValidTagParser>();
             services.AddSingleton<IHtmlParser, DivAndAnchorFlattenedHtmlParser>();
             services.AddSingleton<IHtmlDownloader, HtmlDownloader>();
 

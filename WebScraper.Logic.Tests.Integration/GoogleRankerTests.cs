@@ -25,10 +25,12 @@ namespace WebScraper.Logic.Tests.Integration
             public async Task OneSmokeballSearchResultAtPosition6(
                 [Frozen] IFixture fixture,
                 [Frozen] IHtmlDownloader htmlDownloader,
+                ValidTagParser validTagParser,
                 GoogleRankerDefaultConfig googleRankerConfig)
             {
                 var expectedRanking = 6;
 
+                fixture.Register<IValidTagParser>(() => validTagParser);
                 fixture.Register<IHtmlParser>(() => fixture.Create<DivAndAnchorFlattenedHtmlParser>());
                 fixture.Register<IGoogleRankerConfig>(() => googleRankerConfig);
 
