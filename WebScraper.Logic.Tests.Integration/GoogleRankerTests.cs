@@ -1,6 +1,7 @@
 ﻿using AutoFixture;
 using AutoFixture.Xunit2;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Moq;
 using System.IO;
 using System.Linq;
@@ -35,8 +36,11 @@ namespace WebScraper.Logic.Tests.Integration
 
                 var result = sut.GetRankings();
 
-                result.Should().HaveCount(1);
-                result.First().Should().Be(expectedRanking);
+                using (new AssertionScope())
+                {
+                    result.Should().HaveCount(1);
+                    result.First().Should().Be(expectedRanking);
+                }
             }
 
             [Theory(Skip = "Enable once code actually meets this criteria lol")]
@@ -60,8 +64,11 @@ namespace WebScraper.Logic.Tests.Integration
 
                 var result = sut.GetRankings();
 
-                result.Should().HaveCount(1);
-                result.First().Should().Be(expectedRanking);
+                using (new AssertionScope())
+                {
+                    result.Should().HaveCount(1);
+                    result.First().Should().Be(expectedRanking);
+                }
             }
         }
     }

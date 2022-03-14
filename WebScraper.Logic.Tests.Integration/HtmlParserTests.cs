@@ -2,12 +2,7 @@
 using AutoFixture.Xunit2;
 using FluentAssertions;
 using FluentAssertions.Execution;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebScraper.Logic.HtmlParsers;
 using WebScraper.Logic.Tests.Integration.Customizations;
 using Xunit;
