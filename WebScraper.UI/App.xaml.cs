@@ -22,14 +22,8 @@ namespace WebScraper.UI
 
         private void ConfigureServices(ServiceCollection services)
         {
-            // TODO: figure out if should be singletons or scoped??
-
-            // TODO: set up dependencies of GoogleRanker
-
             // TODO: confirm that logging actually works as expected...
             services.AddLogging(configure => configure.AddConsole());
-
-
 
             services.AddSingleton<IValidTagOracle, ValidTagOracle>();
             services.AddSingleton<ITagFactory, TagFactory>();
