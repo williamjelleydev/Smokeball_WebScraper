@@ -6,12 +6,6 @@ namespace WebScraper.Logic.HtmlParsers
     {
         private readonly Stack<IHtmlTag> _unclosedOpeningTags = new Stack<IHtmlTag>();
         private readonly List<IHtmlNode> _rootNodes = new List<IHtmlNode>();
-        private readonly ITagFactory _tagFactory;
-
-        public HtmlNodeBuilder(ITagFactory tagFactory)
-        {
-            _tagFactory = tagFactory;
-        }
 
         public void AddOpeningTag(IHtmlTag tag)
         {
@@ -41,7 +35,6 @@ namespace WebScraper.Logic.HtmlParsers
             else
             {
                 // Assume must be self closing tag
-                //var openingTag = _tagFactory.CreateOpeningTagFromClosingTag(closingTag);
                 _rootNodes.Add(new HtmlNode(closingTag));
             }
 

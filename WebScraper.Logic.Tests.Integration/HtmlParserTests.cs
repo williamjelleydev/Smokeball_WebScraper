@@ -16,15 +16,11 @@ namespace WebScraper.Logic.Tests.Integration
             [Theory]
             [AutoMoqData]
             public void FlattensToOnlyDivsAndAnchors(
-                TagFactory tagFactory,
                 [Frozen] IFixture fixture)
             {
                 // TODO: make this a relative path so is not machine dependent..
                 string htmlFilePath = @"C:\Source\WebScraper\WebScraper\WebScraper.Logic.Tests.Integration\TestData\SampleHtml1.html";
                 var html = File.ReadAllText(htmlFilePath);
-
-                fixture.Register<ITagFactory>(() => tagFactory);
-                fixture.Register<IValidTagOracle>(() => fixture.Create<ValidTagOracle>());
 
                 var sut = fixture.Create<DivAndAnchorFlattenedHtmlParser>();
 
