@@ -7,17 +7,7 @@ namespace WebScraper.Logic.HtmlParsers
 {
     public class TagFactory : ITagFactory
     {
-        // TODO: Proper parsing of tag contents.. It _could_ make sense to pass the opening and closing brackets in here as well then...?
-        //public OpeningTag CreateOpeningTagFromContents_OG(string tagContents)
-        //{
-        //    // Need to find name, and Attributes.
-        //    var separators = new char[] { ' ', '\r', '\n' };
-        //    var allProps = tagContents.Split(separators, StringSplitOptions.RemoveEmptyEntries); // and perhaps newline chars etc in here as well??
-        //    var name = allProps[0];
-        //    var attributes = allProps.Skip(1).ToList(); // ew gross
-        //    return new OpeningTag(name, attributes);
-        //}
-
+        // TODO: merge this logic with the ValidHtmlOracle somehow???
         public OpeningTag CreateOpeningTagFromContents(string tagContents)
         {
             var currentPos = 0;
@@ -50,6 +40,7 @@ namespace WebScraper.Logic.HtmlParsers
 
         public ClosingTag CreateClosingTagFromContents(string tagContents)
         {
+            // TODO: accept that a closing tag could have attributes (if self closing), and so create in the same way??
             // ew - this code is not a good fit for what we need here...
             var separators = new char[] { ' ', '\r', '\n' };
             var allProps = tagContents.Split(separators, StringSplitOptions.RemoveEmptyEntries);
