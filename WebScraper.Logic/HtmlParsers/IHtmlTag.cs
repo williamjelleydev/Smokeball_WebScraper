@@ -7,8 +7,5 @@ namespace WebScraper.Logic.HtmlParsers
         string Attributes { get; }
         List<IHtmlNode> Children { get; }
         string Name { get; }
-
-        //ClosingTag ToClosingTag();
-        //OpeningTag ToOpeningTag();
     }
 }

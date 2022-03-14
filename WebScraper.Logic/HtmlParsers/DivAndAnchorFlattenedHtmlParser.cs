@@ -14,12 +14,11 @@ namespace WebScraper.Logic.HtmlParsers
         {
             _validTagParser = validTagParser;
         }
+
         public IReadOnlyList<IHtmlNode> ParseHtml(string html)
         {
-            var htmlNodeBuilder = new HtmlNodeBuilder();
-
+            var htmlNodeBuilder = new HtmlNodeBuilder(); // TODO: ctor inject factory so we can unit test this
             var currentPosition = 0;
-            var htmlLength = html.Length;
 
             while (currentPosition < html.Length)
             {
@@ -30,7 +29,7 @@ namespace WebScraper.Logic.HtmlParsers
 
                 if (currentPosition >= html.Length)
                 {
-                    // TODO: test if this would ever get reached..
+                    // TODO: Is this the best way to be "breaking" here?
                     break;
                 }
                 // Ignore all characters until we find next opening tag
@@ -69,6 +68,7 @@ namespace WebScraper.Logic.HtmlParsers
                 } else
                 {
                     // Could not parse a valid tag, so continue discarding chars until next '<'
+                    // TODO: is currentPosition at the right place here?
                     var stop = true;
                 }
 

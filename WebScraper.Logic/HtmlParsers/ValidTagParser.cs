@@ -2,9 +2,11 @@
 
 namespace WebScraper.Logic.HtmlParsers
 {
+    /// <summary>
+    /// Only accepts div and anchor tags
+    /// </summary>
     public class ValidTagParser : IValidTagParser
     {
-        // Then can have all the "funny" logic I want in here??
         private static readonly IList<string> _acceptedTags = new List<string>()
         {
             "div", "a"
@@ -12,7 +14,7 @@ namespace WebScraper.Logic.HtmlParsers
 
         private static readonly IList<char> _acceptableCharsProceedingTagNam = new List<char>()
         {
-            ' ', '>', '\n', '\r'
+            ' ', '\n', '\r'
         };
 
         public bool TryParse(string tagContents, out HtmlTag tag)
