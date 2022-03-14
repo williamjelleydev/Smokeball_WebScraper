@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebScraper.UI", "WebScraper
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebScraper.Logic", "WebScraper.Logic\WebScraper.Logic.csproj", "{C3E2D86D-9ED5-4B4C-B8F8-540C60733A4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScraper.Logic.Tests.Integration", "WebScraper.Logic.Tests.Integration\WebScraper.Logic.Tests.Integration.csproj", "{78A0A289-611F-4397-AF52-24F14614DC17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebScraper.Logic.Tests.Integration", "WebScraper.Logic.Tests.Integration\WebScraper.Logic.Tests.Integration.csproj", "{78A0A289-611F-4397-AF52-24F14614DC17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScraper.Logic.Tests.Unit", "WebScraper.Logic.Tests.Unit\WebScraper.Logic.Tests.Unit.csproj", "{EB4B074B-0C73-40E0-AA8A-B4707ED2D314}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{78A0A289-611F-4397-AF52-24F14614DC17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78A0A289-611F-4397-AF52-24F14614DC17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78A0A289-611F-4397-AF52-24F14614DC17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB4B074B-0C73-40E0-AA8A-B4707ED2D314}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB4B074B-0C73-40E0-AA8A-B4707ED2D314}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB4B074B-0C73-40E0-AA8A-B4707ED2D314}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB4B074B-0C73-40E0-AA8A-B4707ED2D314}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

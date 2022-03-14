@@ -22,7 +22,6 @@ namespace WebScraper.UI
 
         private void ConfigureServices(ServiceCollection services)
         {
-            // TODO: confirm that logging actually works as expected...
             services.AddLogging(configure => configure.AddConsole());
 
             services.AddSingleton<IValidTagOracle, ValidTagOracle>();
@@ -30,10 +29,8 @@ namespace WebScraper.UI
             services.AddSingleton<IHtmlParser, DivAndAnchorFlattenedHtmlParser>();
             services.AddSingleton<IHtmlDownloader, HtmlDownloader>();
 
-            // GoogleRanker Business Logic
-            services.AddSingleton<IGoogleRankerConfig, GoogleRankerConfig>();
+            services.AddSingleton<IGoogleRankerConfig, GoogleRankerDefaultConfig>();
             services.AddSingleton<IGoogleRanker, GoogleRanker>();
-
 
             services.AddSingleton<MainWindow>();
         }

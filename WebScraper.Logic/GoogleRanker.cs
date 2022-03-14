@@ -34,7 +34,7 @@ namespace WebScraper.Logic
             var searchPositions = new List<int>();
             var currentSearchPosition = 0;
 
-            foreach (var htmlNode in htmlNodes.SelectMany(x => x.GetNodesWithAnyOfClasses(_config.IdentifyingParentDivClasses)).Take(_config.MaxResults)) // TODO: make this 100 number configurable
+            foreach (var htmlNode in htmlNodes.SelectMany(x => x.GetNodesWithAnyOfClasses(_config.IdentifyingParentDivClasses)).Take(_config.MaxResults))
             {
                 currentSearchPosition++;
                 var anchorNode = htmlNode.Children.FirstOrDefault(x => x.Name == "a");

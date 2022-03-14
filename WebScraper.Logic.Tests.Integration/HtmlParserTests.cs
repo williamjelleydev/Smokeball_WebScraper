@@ -38,7 +38,7 @@ namespace WebScraper.Logic.Tests.Integration
                     htmlNodes[0].Children[0].Name.Should().Be("div");
                     htmlNodes[0].Children[1].Name.Should().Be("a");
                 }
-            } 
+            }
         }
     }
 }

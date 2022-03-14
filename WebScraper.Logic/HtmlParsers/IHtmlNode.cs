@@ -8,7 +8,6 @@ namespace WebScraper.Logic.HtmlParsers
         string Name { get; }
 
         IEnumerable<IHtmlNode> GetNodesWithAnyOfClasses(IEnumerable<string> classes);
-        IEnumerable<IHtmlNode> GetNodesWithClass(string className);
         bool HasClass(string className);
         bool HasHrefWithUrl(string url);
     }

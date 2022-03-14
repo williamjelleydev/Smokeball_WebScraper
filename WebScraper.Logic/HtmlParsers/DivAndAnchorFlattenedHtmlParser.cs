@@ -21,14 +21,13 @@ namespace WebScraper.Logic.HtmlParsers
 
         public IReadOnlyList<IHtmlNode> ParseHtml(string html)
         {
-            var htmlNodeBuilder = new HtmlNodeBuilder(_tagFactory); // TODO: probably create an HtmlNodeBuilderFactory - the need for this might become more obvious when i come to unit testing this..
+            var htmlNodeBuilder = new HtmlNodeBuilder(_tagFactory);
 
             var currentPosition = 0;
 
-            // I mean at this point, how useful even _is_ this validTagOracle?? lol
             while (_validTagOracle.TryGetNextValidTag(currentPosition, html, out string tagContents, out bool isOpeningTag, out int nextPosition))
             {
-                currentPosition = nextPosition; // TODO: confirm if this is even necessary! Does currentPosition just get updated in validTagOracle??
+                currentPosition = nextPosition;
                 if (isOpeningTag)
                 {
                     var openingTag = _tagFactory.CreateOpeningTagFromContents(tagContents);

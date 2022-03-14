@@ -13,34 +13,19 @@ namespace WebScraper.Logic.HtmlParsers
         }
 
         public string Name { get; }
-        public IReadOnlyList<IHtmlNode> Children { get; } // TODO: make readonly, etc..
+
+        public IReadOnlyList<IHtmlNode> Children { get; }
 
         private string Attributes { get; }
-
 
         public bool HasClass(string className)
         {
             return Attributes.Contains(className);
         }
 
-        public IEnumerable<IHtmlNode> GetNodesWithClass(string className)
-        {
-            var nodes = new List<IHtmlNode>();
-            if (HasClass(className))
-            {
-                nodes.Add(this);
-            }
-
-            foreach (var node in Children)
-            {
-                nodes.AddRange(node.GetNodesWithClass(className));
-            }
-
-            return nodes;
-        }
-
         public IEnumerable<IHtmlNode> GetNodesWithAnyOfClasses(IEnumerable<string> classes)
         {
+            // TODO: Replace with more robust check once better HtmlParser is used for attributes
             var nodes = new List<IHtmlNode>();
             if (classes.Any(c => HasClass(c)))
             {
@@ -57,6 +42,7 @@ namespace WebScraper.Logic.HtmlParsers
 
         public bool HasHrefWithUrl(string url)
         {
+            // TODO: Replace with more robust check once better HtmlParser is used for attributes
             return Attributes.Contains(url);
         }
     }

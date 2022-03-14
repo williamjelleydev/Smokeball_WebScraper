@@ -26,7 +26,7 @@ namespace WebScraper.Logic.Tests.Integration
                 [Frozen] IFixture fixture,
                 [Frozen] IHtmlDownloader htmlDownloader,
                 TagFactory tagFactory,
-                GoogleRankerConfig googleRankerConfig)
+                GoogleRankerDefaultConfig googleRankerConfig)
             {
                 var expectedRanking = 6;
 

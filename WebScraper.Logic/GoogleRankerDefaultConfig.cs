@@ -2,7 +2,7 @@
 
 namespace WebScraper.Logic
 {
-    public class GoogleRankerConfig : IGoogleRankerConfig
+    public class GoogleRankerDefaultConfig : IGoogleRankerConfig
     {
         public string GoogleSearchUrl { get; } = "https://www.google.com.au/search?num=100&q=conveyancing+software";
         public string DesiredUrl { get; } = "www.smokeball.com.au";

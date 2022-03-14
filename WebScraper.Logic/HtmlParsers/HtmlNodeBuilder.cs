@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace WebScraper.Logic.HtmlParsers
 {
@@ -22,51 +20,42 @@ namespace WebScraper.Logic.HtmlParsers
 
         public void AddClosingTag(IClosingTag closingTag)
         {
-            // TODO: I'm sure I can reduce this. There is a lot of similar/duplicate looking logic
             if (_unclosedOpeningTags.Count > 0)
             {
                 var matchingOpeningTag = _unclosedOpeningTags.Peek();
                 if (matchingOpeningTag.Name == closingTag.Name)
                 {
-                    _unclosedOpeningTags.Pop();
-                    if (_unclosedOpeningTags.Count > 0)
-                    {
-                        // Add to top of stacks Children
-                        var htmlNode = new HtmlNode(matchingOpeningTag);
-                        _unclosedOpeningTags.Peek().Children.Add(htmlNode);
-                    }
-                    else
-                    {
-                        // root, so add to result list
-                        var htmlNode = new HtmlNode(matchingOpeningTag);
-                        _rootNodes.Add(htmlNode);
-                    }
+                    var htmlNode = new HtmlNode(_unclosedOpeningTags.Pop());
+                    AddToParentOrRoot(htmlNode);
                 }
                 else
                 {
-                    var selfClosingTag = _unclosedOpeningTags.Pop();
-                    var selfClosingHtmlNode = new HtmlNode(selfClosingTag);
-                    if (_unclosedOpeningTags.Count > 0)
-                    {
-                        _unclosedOpeningTags.Peek().Children.Add(selfClosingHtmlNode);
-                    }
-                    else
-                    {
-                        _rootNodes.Add(selfClosingHtmlNode);
-                    }
+                    var selfClosingHtmlNode = new HtmlNode(_unclosedOpeningTags.Pop());
+                    AddToParentOrRoot(selfClosingHtmlNode);
 
-                    // Now try and re-process our tagContents
+                    // Now try and re-process our closingTag
                     AddClosingTag(closingTag);
                 }
             }
             else
             {
+                // Assume must be self closing tag
                 var openingTag = _tagFactory.CreateOpeningTagFromClosingTag(closingTag);
                 _rootNodes.Add(new HtmlNode(openingTag));
             }
+
+            void AddToParentOrRoot(HtmlNode htmlNode)
+            {
+                if (_unclosedOpeningTags.Count > 0)
+                {
+                    _unclosedOpeningTags.Peek().Children.Add(htmlNode);
+                } else
+                {
+                    _rootNodes.Add(htmlNode);
+                }
+            }
         }
 
-        // TODO: make a readonly list
         public IReadOnlyList<IHtmlNode> ToHtmlNodes()
         {
             return _rootNodes;
