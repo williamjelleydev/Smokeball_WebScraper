@@ -10,6 +10,7 @@ namespace WebScraper.Logic
     public class GoogleRanker : IGoogleRanker
     {
 
+        // TODO: alot of this could be passed in via config pls
         private readonly IHtmlDownloader _htmlDownloader;
         private readonly IHtmlParser _htmlParser;
         private readonly ILogger _logger;
@@ -36,11 +37,7 @@ namespace WebScraper.Logic
         public async Task<IEnumerable<int>> GetRankingsAsync()
         {
             var html = await _htmlDownloader.DownloadHtmlAsync(_googleSearchUrl);
-
             var htmlNodes = _htmlParser.ParseHtml(html);
-
-            _logger.LogWarning("DUH!: Inside GetRankings and testing MY LOOOOGGGGEEEERRR");
-            Console.WriteLine("Here is a direct console writeline for comparison");
 
             var searchPositions = new List<int>();
             var currentSearchPosition = 0;
@@ -82,9 +79,6 @@ namespace WebScraper.Logic
             var html = await _htmlDownloader.DownloadHtmlAsync(_googleSearchUrl);
 
             var htmlNodes = _htmlParser.ParseHtml(html);
-
-            _logger.LogWarning("DUH!: Inside GetRankings and testing MY LOOOOGGGGEEEERRR");
-            Console.WriteLine("Here is a direct console writeline for comparison");
 
             //var searchPositions = new List<int>();
             var allRankings = new List<UrlRanking>();

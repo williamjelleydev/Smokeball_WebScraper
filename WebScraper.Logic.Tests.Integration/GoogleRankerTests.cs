@@ -22,43 +22,12 @@ namespace WebScraper.Logic.Tests.Integration
 
             [Theory]
             [AutoMoqData]
-            public async Task OneSmokeballSearchResultAtPosition5(
+            public async Task OneSmokeballSearchResultAtPosition6(
                 [Frozen] IFixture fixture,
                 [Frozen] IHtmlDownloader htmlDownloader,
                 TagFactory tagFactory)
             {
-                var expectedRanking = 5;
-
-                fixture.Register<ITagFactory>(() => tagFactory);
-                fixture.Register<IValidTagOracle>(() => fixture.Create<ValidTagOracle>());
-                fixture.Register<IHtmlParser>(() => fixture.Create<DivAndAnchorFlattenedHtmlParser>());
-
-                // TODO: make relative file path so can run anywhere..
-                string htmlFilePath = @"C:\Source\WebScraper\WebScraper\WebScraper.Logic.Tests.Integration\TestData\GoogleTest.html";
-                var html = File.ReadAllText(htmlFilePath);
-                Mock.Get(htmlDownloader).Setup(x => x.DownloadHtmlAsync(It.IsAny<string>())).Returns(Task.FromResult(html));
-
-                var sut = fixture.Create<GoogleRanker>();
-
-                var result = await sut.GetRankingsAsync();
-
-                using (new AssertionScope())
-                {
-                    result.Should().HaveCount(1);
-                    result.First().Should().Be(expectedRanking);
-                }
-            }
-
-
-            [Theory(Skip = "Enable once code actually meets this criteria lol")]
-            [AutoMoqData]
-            // TODO: Confirm, but maybe this _should_ be 6!!!
-            public async Task OneSmokeballSearchResultAtPosition7(
-                [Frozen] IFixture fixture,
-                [Frozen] IHtmlDownloader htmlDownloader,
-                TagFactory tagFactory)
-            {
-                var expectedRanking = 7;
+                var expectedRanking = 6;
 
                 fixture.Register<ITagFactory>(() => tagFactory);
                 fixture.Register<IValidTagOracle>(() => fixture.Create<ValidTagOracle>());
