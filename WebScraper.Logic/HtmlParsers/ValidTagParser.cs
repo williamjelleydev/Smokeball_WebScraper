@@ -1,56 +1,48 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace WebScraper.Logic.HtmlParsers
 {
     /// <summary>
-    /// Only accepts div and anchor tags
+    /// Parsers out div and a tags if the tagCandidateContent meets some basic
+    /// validation criteria
     /// </summary>
     public class ValidTagParser : IValidTagParser
     {
-        private static readonly IList<string> _acceptedTags = new List<string>()
+        private static readonly IEnumerable<string> _acceptedTags = new List<string>()
         {
             "div", "a"
         };
 
-        private static readonly IList<char> _acceptableCharsProceedingTagNam = new List<char>()
+        private static readonly IEnumerable<char> _acceptableCharsProceedingTagNam = new List<char>()
         {
             ' ', '\n', '\r'
         };
 
-        public bool TryParse(string tagContents, out IHtmlTag tag)
+        public bool TryParse(string tagCandidateContents, out IHtmlTag tag)
         {
-            // if we can pass, and accept that the tagContents are valid then cool, we return. If not, then 
-            var currentPos = 0;
-
-            // Hmm. I _think_ I need  regex here.
-            bool startsWithDivOrAnchor = false;
-            string tagName = null;
-            string attributes = "";
             foreach (var acceptedTag in _acceptedTags)
             {
-                if (tagContents.StartsWith(acceptedTag))
+                if (tagCandidateContents.StartsWith(acceptedTag))
                 {
                     var endOfTagNamePos = acceptedTag.Length - 1;
-                    if (string.Equals(tagContents, acceptedTag) || IsAcceptableTagProceedingTagName(tagContents[endOfTagNamePos + 1]))
+                    if (string.Equals(tagCandidateContents, acceptedTag) || IsAcceptableTagProceedingTagName(tagCandidateContents[endOfTagNamePos + 1]))
                     {
-                        startsWithDivOrAnchor = true;
-                        tagName = acceptedTag;
+                        var tagName = acceptedTag;
+                        var attributes = "";
                         var startOfAttributePos = endOfTagNamePos + 2;
-                        if (startOfAttributePos < tagContents.Length - 1)
+                        if (startOfAttributePos < tagCandidateContents.Length - 1)
                         {
-                            attributes = tagContents.Substring(startOfAttributePos); // all the way to the end
+                            attributes = tagCandidateContents.Substring(startOfAttributePos); // all the way to the end
                         }
-                        tag = new HtmlTag(tagName, attributes);
+                        tag = new HtmlTag(acceptedTag, attributes);
                         return true;
-
                     }
-
                 }
             }
 
             tag = null;
             return false;
-
         }
 
         private bool IsAcceptableTagProceedingTagName(char inputChar)
