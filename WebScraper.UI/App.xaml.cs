@@ -33,7 +33,7 @@ namespace WebScraper.UI
 
 
             services.AddSingleton<ITagFactory, TagFactory>();
-            services.AddSingleton<IHtmlParser, HtmlParser>();
+            services.AddSingleton<IHtmlParser, DivAndAnchorFlattenedHtmlParser>();
             services.AddSingleton<IHtmlDownloader, HtmlDownloader>();
 
             // GoogleRanker Business Logic

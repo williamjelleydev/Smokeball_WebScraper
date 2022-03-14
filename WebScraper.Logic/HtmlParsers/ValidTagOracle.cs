@@ -2,7 +2,7 @@
 
 namespace WebScraper.Logic.HtmlParsers
 {
-    public class ValidTagOracle
+    public class ValidTagOracle : IValidTagOracle
     {
         // TODO: this could _probably_ be the config options of this oracle??
         private static readonly IList<string> _acceptedTags = new List<string>()

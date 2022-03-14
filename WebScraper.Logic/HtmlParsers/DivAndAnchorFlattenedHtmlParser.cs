@@ -1,25 +1,32 @@
 ﻿using System.Collections.Generic;
 
 namespace WebScraper.Logic.HtmlParsers
-{
-    public class HtmlParser : IHtmlParser
+{/// <summary>
+/// Takes input html string, and returns list of HtmlNodes, flattening only to <div> and <a>
+/// tags and their attributes. This ignore everything else in html
+/// </summary>
+    public class DivAndAnchorFlattenedHtmlParser : IHtmlParser
     {
         private readonly ITagFactory _tagFactory;
+        private readonly IValidTagOracle _validTagOracle;
 
-        public HtmlParser(ITagFactory tagFactory)
+        public DivAndAnchorFlattenedHtmlParser(
+            ITagFactory tagFactory,
+            IValidTagOracle validTagOracle
+            )
         {
             _tagFactory = tagFactory;
+            _validTagOracle = validTagOracle;
         }
 
         public IList<HtmlNode> ParseHtml(string html)
         {
-            var htmlNodeBuilder = new HtmlNodeBuilder(_tagFactory);
-            var validTagOracle = new ValidTagOracle(); // TODO: make DI
+            var htmlNodeBuilder = new HtmlNodeBuilder(_tagFactory); // TODO: probably create an HtmlNodeBuilderFactory - the need for this might become more obvious when i come to unit testing this..
 
             var currentPosition = 0;
 
             // I mean at this point, how useful even _is_ this validTagOracle?? lol
-            while (validTagOracle.TryGetNextValidTag(currentPosition, html, out string tagContents, out bool isOpeningTag, out int nextPosition))
+            while (_validTagOracle.TryGetNextValidTag(currentPosition, html, out string tagContents, out bool isOpeningTag, out int nextPosition))
             {
                 currentPosition = nextPosition; // TODO: confirm if this is even necessary! Does currentPosition just get updated in validTagOracle??
                 if (isOpeningTag)

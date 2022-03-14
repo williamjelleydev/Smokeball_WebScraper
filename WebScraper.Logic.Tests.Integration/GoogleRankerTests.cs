@@ -26,7 +26,8 @@ namespace WebScraper.Logic.Tests.Integration
                 var expectedRanking = 5;
 
                 fixture.Register<ITagFactory>(() => tagFactory);
-                fixture.Register<IHtmlParser>(() => fixture.Create<HtmlParser>());
+                fixture.Register<IValidTagOracle>(() => fixture.Create<ValidTagOracle>());
+                fixture.Register<IHtmlParser>(() => fixture.Create<DivAndAnchorFlattenedHtmlParser>());
 
                 // TODO: make relative file path so can run anywhere..
                 string htmlFilePath = @"C:\Source\WebScraper\WebScraper\WebScraper.Logic.Tests.Integration\TestData\GoogleTest.html";
@@ -55,7 +56,8 @@ namespace WebScraper.Logic.Tests.Integration
                 var expectedRanking = 7;
 
                 fixture.Register<ITagFactory>(() => tagFactory);
-                fixture.Register<IHtmlParser>(() => fixture.Create<HtmlParser>());
+                fixture.Register<IValidTagOracle>(() => fixture.Create<ValidTagOracle>());
+                fixture.Register<IHtmlParser>(() => fixture.Create<DivAndAnchorFlattenedHtmlParser>());
 
                 // TODO: make relative file path so can run anywhere..
                 string htmlFilePath = @"C:\Source\WebScraper\WebScraper\WebScraper.Logic.Tests.Integration\TestData\GoogleTest.html";

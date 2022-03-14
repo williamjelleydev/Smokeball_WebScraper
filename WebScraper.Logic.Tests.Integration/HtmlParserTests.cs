@@ -24,8 +24,9 @@ namespace WebScraper.Logic.Tests.Integration
                 var html = File.ReadAllText(htmlFilePath);
 
                 fixture.Register<ITagFactory>(() => tagFactory);
+                fixture.Register<IValidTagOracle>(() => fixture.Create<ValidTagOracle>());
 
-                var sut = fixture.Create<HtmlParser>();
+                var sut = fixture.Create<DivAndAnchorFlattenedHtmlParser>();
 
                 var htmlNodes = sut.ParseHtml(html);
 
