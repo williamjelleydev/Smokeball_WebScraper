@@ -2,6 +2,6 @@
 {
     public interface IValidTagParser
     {
-        bool TryParse(string tagContents, out HtmlTag tag);
+        bool TryParse(string tagContents, out IHtmlTag tag);
     }
 }

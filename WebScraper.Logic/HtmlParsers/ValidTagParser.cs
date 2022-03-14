@@ -17,7 +17,7 @@ namespace WebScraper.Logic.HtmlParsers
             ' ', '\n', '\r'
         };
 
-        public bool TryParse(string tagContents, out HtmlTag tag)
+        public bool TryParse(string tagContents, out IHtmlTag tag)
         {
             // if we can pass, and accept that the tagContents are valid then cool, we return. If not, then 
             var currentPos = 0;
