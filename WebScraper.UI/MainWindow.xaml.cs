@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,15 +22,60 @@ namespace WebScraper.UI
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+    public class ViewModel : ViewModelBase
+    {
+
+        private string _rankingMessage;
+
+        public string RankingMessage
+        {
+            get { return _rankingMessage; }
+            set { SetProperty(ref _rankingMessage, value); }
+        }
+
+        // TODO: now _maybe_ from here, we click a button which then gets the result and sets rankingMessage
+        // In which case, this ViewModel will reflect the change in the UI!
+
+
+    }
+
+    public abstract class ViewModelBase : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected bool SetProperty<T>(ref T field, T newValue, [CallerMemberName]string propertyName = null)
+        {
+            if (!EqualityComparer<T>.Default.Equals(field, newValue))
+            {
+                field = newValue;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                return true;
+            }
+            return false;
+        }
+    }
+
+
     public partial class MainWindow : Window
     {
         // TODO: make this its own GoogleRanker window or something??
         private readonly IGoogleRanker _googleRanker;
 
+        private readonly ViewModel _viewModel;
+
         public MainWindow(IGoogleRanker googleRanker)
         {
-            InitializeComponent();
             _googleRanker = googleRanker;
+
+            _viewModel = new ViewModel();
+            _viewModel.RankingMessage = "Test Ranking Message";
+            DataContext = _viewModel;
+
+            InitializeComponent();
+
+            _viewModel.RankingMessage = "Mark";
+
         }
 
         // TODO: make this async
@@ -67,6 +114,11 @@ namespace WebScraper.UI
                 //File.WriteAllText("Duh_test_html.txt", htmlDoc);
                 var stop = true;
             }
+        }
+
+        private void ChangeRankingMessage_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.RankingMessage = "La de da look at me!";
         }
 
         // https://www.codeguru.com/dotnet/managing-non-blocking-calls-on-the-ui-thread-with-async-await/

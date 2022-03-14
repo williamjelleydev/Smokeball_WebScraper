@@ -33,7 +33,7 @@ namespace WebScraper.Logic.Tests.Integration
                 fixture.Register<ITagFactory>(() => tagFactory);
                 fixture.Register<IValidTagOracle>(() => fixture.Create<ValidTagOracle>());
                 fixture.Register<IHtmlParser>(() => fixture.Create<DivAndAnchorFlattenedHtmlParser>());
-                fixture.Register<IGoogleRankerConfig>(() => fixture.Create<GoogleRankerConfig>());
+                fixture.Register<IGoogleRankerConfig>(() => googleRankerConfig);
 
                 // TODO: make relative file path so can run anywhere..
                 string htmlFilePath = @"C:\Source\WebScraper\WebScraper\WebScraper.Logic.Tests.Integration\TestData\GoogleTest.html";

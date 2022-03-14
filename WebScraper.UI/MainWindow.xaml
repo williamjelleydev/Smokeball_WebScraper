@@ -17,6 +17,8 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Button Grid.Row="0" Margin="10" Click="HtmlParserTest_Click">
@@ -30,6 +32,10 @@
             </Button>
             <Button Grid.Row="3" Margin="10" Click="DownloadFreshHtml_Click">
                 DownloadFreshHtml
+            </Button>
+            <TextBlock Grid.Row="4" Text="{Binding Path=RankingMessage}"/>
+            <Button Grid.Row="5" Margin="10" Click="ChangeRankingMessage_Click">
+                ChangeRankingMessage
             </Button>
         </Grid>
 
