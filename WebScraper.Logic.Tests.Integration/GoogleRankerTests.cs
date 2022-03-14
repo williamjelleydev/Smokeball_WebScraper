@@ -16,10 +16,6 @@ namespace WebScraper.Logic.Tests.Integration
     {
         public class GetRankingsAsync
         {
-            // TODO: Add a test here that actually _hits_ google.com.au
-            // If we cannot find 100 results with "egMi0", then we know this web scraper will fail!!
-
-
             [Theory]
             [AutoMoqData]
             public async Task OneSmokeballSearchResultAtPosition6(
@@ -34,7 +30,6 @@ namespace WebScraper.Logic.Tests.Integration
                 fixture.Register<IHtmlParser>(() => fixture.Create<DivAndAnchorFlattenedHtmlParser>());
                 fixture.Register<IGoogleRankerConfig>(() => googleRankerConfig);
 
-                // TODO: make relative file path so can run anywhere..
                 string htmlFilePath = @"C:\Source\WebScraper\WebScraper\WebScraper.Logic.Tests.Integration\TestData\GoogleTest.html";
                 var html = File.ReadAllText(htmlFilePath);
                 Mock.Get(htmlDownloader).Setup(x => x.DownloadHtmlAsync(It.IsAny<string>())).Returns(Task.FromResult(html));

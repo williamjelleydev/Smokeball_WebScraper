@@ -34,7 +34,9 @@ namespace WebScraper.Logic
             var searchPositions = new List<int>();
             var currentSearchPosition = 0;
 
+            // I need t least one htmlNode in htmlNodes, where x.GetNodesWithAnyOfClasses() returns a list of nots
             foreach (var htmlNode in htmlNodes.SelectMany(x => x.GetNodesWithAnyOfClasses(_config.IdentifyingParentDivClasses)).Take(_config.MaxResults))
+            //foreach (var htmlNode in htmlNodes.SelectMany(x => x.GetNodesWithAnyOfClasses(_config.IdentifyingParentDivClasses)))
             {
                 currentSearchPosition++;
                 var anchorNode = htmlNode.Children.FirstOrDefault(x => x.Name == "a");
