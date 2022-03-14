@@ -6,7 +6,6 @@ namespace WebScraper.Logic.HtmlParsers
     {
         IReadOnlyList<IHtmlNode> Children { get; }
         string Name { get; }
-
         IEnumerable<IHtmlNode> GetNodesWithAnyOfClasses(IEnumerable<string> classes);
         bool HasClass(string className);
         bool HasHrefWithUrl(string url);

@@ -20,6 +20,7 @@ namespace WebScraper.Logic.HtmlParsers
 
         public bool HasClass(string className)
         {
+            // TODO: Replace with more robust check once better HtmlParser is used for attributes
             return Attributes.Contains(className);
         }
 
