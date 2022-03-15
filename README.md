@@ -9,7 +9,7 @@ Smokeball take home coding exercise as part of application process. "The CEO wan
 
 ## Unfinished/meh code
 * Unit tests are sorely lacking due to time constraints
-* Implementing a my own HtmlParser is tough work, it is making do with a less than ideal DivAndAnchorFlattenedHtmlParser that ignores all other 
+* Implementing a my own HtmlParser is tough work, it is making do with a less than ideal DivAndAnchorFlattenedHtmlParser that ignores everything in html exept anchors and divs. The code is written in a way where HtmlParser could be swapped out for something a bit more comprehensive/robust.
 * HtmlElement parsing is primitive, all attributes are saved as a single combined string, and basic string.contains() to see if it has an attribute value you are looking for. This could easily run into trouble if the value you are looking for is on another attribute name!
 * Need to add appsetting.json file to make it easier to configure different google search terms, what links to look for, and how many results to search through
 * Web scrapers can be pretty meh in general. This identifies search results based on css class I saw by manually looking at google.com.au's html, this will certainly change with time and break this application!
