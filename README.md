@@ -4,6 +4,7 @@ Smokeball take home coding exercise as part of application process. "The CEO wan
 ## What is it
 * Simple WPF .Net 5 application that downloads from https://www.google.com.au/search?num=100&q=conveyancing+software and outputs where smokeball.com.au sits in the rankings
 * Can run directly in Visual Studio 2019 provided you have appropriate WPF tools/extensions installed.
+* Clone the repo and try it out!
 
 
 ## Unfinished/meh code
