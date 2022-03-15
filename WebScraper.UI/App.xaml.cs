@@ -28,6 +28,7 @@ namespace WebScraper.UI
             services.AddSingleton<IHtmlParser, DivAndAnchorFlattenedHtmlParser>();
             services.AddSingleton<IHtmlDownloader, HtmlDownloader>();
 
+            // TODO: add GoogleRankerConfig via appsettings.json instead
             services.AddSingleton<IGoogleRankerConfig, GoogleRankerDefaultConfig>();
             services.AddSingleton<IGoogleRanker, GoogleRanker>();
 

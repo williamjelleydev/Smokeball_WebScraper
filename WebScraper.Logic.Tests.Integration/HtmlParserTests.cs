@@ -19,8 +19,7 @@ namespace WebScraper.Logic.Tests.Integration
                 ValidTagParser validTagParser,
                 [Frozen] IFixture fixture)
             {
-                // TODO: make this a relative path so is not machine dependent..
-                string htmlFilePath = @"C:\Source\WebScraper\WebScraper\WebScraper.Logic.Tests.Integration\TestData\SampleHtml1.html";
+                string htmlFilePath = @"TestData\SampleHtml1.html";
                 var html = File.ReadAllText(htmlFilePath);
 
                 fixture.Register<IValidTagParser>(() => validTagParser);

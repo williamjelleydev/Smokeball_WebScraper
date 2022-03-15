@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -24,6 +24,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WebScraper.Logic\WebScraper.Logic.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TestData\GoogleTest.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\SampleHtml1.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

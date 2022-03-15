@@ -30,7 +30,7 @@ namespace WebScraper.Logic.Tests.Integration
                 fixture.Register<IHtmlParser>(() => fixture.Create<DivAndAnchorFlattenedHtmlParser>());
                 fixture.Register<IGoogleRankerConfig>(() => googleRankerConfig);
 
-                string htmlFilePath = @"C:\Source\WebScraper\WebScraper\WebScraper.Logic.Tests.Integration\TestData\GoogleTest.html";
+                string htmlFilePath = @"TestData\GoogleTest.html";
                 var html = File.ReadAllText(htmlFilePath);
                 Mock.Get(htmlDownloader).Setup(x => x.DownloadHtmlAsync(It.IsAny<string>())).Returns(Task.FromResult(html));
 
